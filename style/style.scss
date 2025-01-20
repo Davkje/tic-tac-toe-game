@@ -45,12 +45,13 @@ h1 {
   .game-area {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    gap: 8px;
+    gap: 12px;
   }
 }
 
 .box {
-  background-color: #9ea1c2;
+  border: solid 6px #9ea1c2;
+  border-radius: 10px;
   width: 100px;
   height: 100px;
 }
