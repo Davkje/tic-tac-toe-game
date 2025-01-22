@@ -41,10 +41,13 @@ h1 {
 	line-height: 1.1;
 	text-align: center;
 	margin-bottom: .4rem;
+	text-transform: uppercase;
 }
 
 p {
 	font-size: var(--font-size-p);
+	font-weight: 500;
+	font-style: italic;
 }
 
 .game-section {
@@ -52,7 +55,7 @@ p {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	margin: 1.6rem;
+	margin: 1.2rem;
 
 	.game-area {
 		display: grid;
@@ -79,6 +82,10 @@ p {
 	&.checked {
 		border-color: #243a33;
 	}
+	&.winner {
+		background-color: rgb(248, 255, 249);
+		transition: background-color 0.4s ease;
+	}
 
 	&:hover {
 		border-color: #243a33;
@@ -98,15 +105,19 @@ p {
 	}
 }
 
+.game-status {
+	font-size: var(--font-size-p);
+	margin-bottom: 12px;
+	font-weight: 800;
+}
+
 .game-message {
 	font-size: var(--font-size-p);
 
 	.material-icons {
-		font-size: clamp(3.4rem, 2vw, 6rem);
+		font-size: clamp(2rem, 2vw, 6rem);
 	}
-
 }
-
 
 .hidden {
 	display: flex; // Keep the layout but hide the element
@@ -116,9 +127,9 @@ p {
 }
 
 button {
-	transition: opacity .8s ease, visibility .8s ease;
+	transition: opacity .4s ease, visibility .4s ease;
 	position: absolute;
-	bottom: 7vh;
+	bottom: 4%;
 	padding: 10px 20px;
 	font-size: clamp(1rem, 3vw, 1.2rem);
 	font-weight: 800;
