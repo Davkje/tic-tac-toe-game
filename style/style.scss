@@ -44,6 +44,45 @@ h1 {
 	text-transform: uppercase;
 }
 
+
+button {
+	transition: opacity .4s ease, visibility .4s ease;
+	position: absolute;
+	bottom: 4%;
+	padding: 10px 20px;
+	font-size: clamp(1rem, 3vw, 1.2rem);
+	font-weight: 800;
+	cursor: pointer;
+	background-color: #304b42;
+	color: #eafbee;
+	border: none;
+	border-radius: 5px;
+	opacity: 1;
+	visibility: visible;
+  height: 40px;
+
+	&:hover {
+		background-color: #283c36;
+	}
+}
+
+.mute-btn {
+  position: fixed;
+  bottom: 4%;
+  right: 4%;
+  width: 10px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: none;
+  color: #304b42;
+  &:hover {
+    background: #304b42;
+    color: #eafbee;
+  }
+}
+
 p {
 	font-size: var(--font-size-p);
 	font-weight: 500;

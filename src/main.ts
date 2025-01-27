@@ -7,6 +7,29 @@ const statusElement = document.getElementById("gameStatus") as HTMLDivElement;
 let currentPlayer: "X" | "O" = "X";
 const board = Array(9).fill(null);
 
+// AUDIO
+const muteButton = document.getElementById("muteButton") as HTMLButtonElement;
+
+const winSound = new Audio("./sounds/win_sound.wav");
+const buttonSound = new Audio("./sounds/button.m4a");
+
+// Mute state
+let isMuted = false;
+
+muteButton.addEventListener("click", () => {
+  isMuted = !isMuted // Toggle mute
+
+  // Update button text or appearance
+  muteButton.textContent = isMuted ? "volume_off" : "volume_up";
+});
+
+// Wrapper function to play sound respecting the mute state
+function playSound(sound: HTMLAudioElement) {
+	if (!isMuted) {
+		sound.play();
+	}
+}
+
 // Add click listeners to all boxes
 boxes.forEach((box) => box.addEventListener("click", handleClick));
 
@@ -24,7 +47,7 @@ function handleClick(event: Event) {
 	// Update the board and UI
 	board[index] = currentPlayer;
 	target.innerHTML = getPlayerIcon(currentPlayer);
-
+  playSound(buttonSound);
 	// Add the "checked" class
 	target.classList.add("checked");
 
@@ -35,10 +58,12 @@ function handleClick(event: Event) {
 		updateGameStatus("Winner");
 		updateMessage(`${currentPlayer}`);
 		showPlayAgainButton();
+    playSound(winSound);
 	} else if (board.every((cell) => cell)) {
 		updateGameStatus("Draw");
 		updateMessage(`${getPlayerIcon("X")} ${getPlayerIcon("O")}`);
 		showPlayAgainButton();
+    playSound(winSound);
 	} else {
 		currentPlayer = currentPlayer === "X" ? "O" : "X";
 		updateGameStatus("Current Player");
@@ -50,6 +75,7 @@ function handleClick(event: Event) {
 function resetGame() {
 	// Clear the board array
 	board.fill(null);
+  playSound(buttonSound);
 
 	// Reset the UI for all boxes
 	boxes.forEach((box) => {
