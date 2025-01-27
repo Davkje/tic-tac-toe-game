@@ -7,15 +7,29 @@ const statusElement = document.getElementById("gameStatus") as HTMLDivElement;
 let currentPlayer: "X" | "O" = "X";
 const board = Array(9).fill(null);
 
+//THEME TOGGLE
+const themeButton = document.getElementById("themeButton") as HTMLButtonElement;
+let isDarkMode = false;
+
+// Add click listener for the theme button
+themeButton.addEventListener("click", () => {
+  isDarkMode = !isDarkMode; // Toggle dark mode state
+
+  // Update body class to switch themes
+  if (isDarkMode) {
+    document.body.classList.add("dark-mode");
+    themeButton.textContent = "dark_mode";  // Change the button text/icon to moon
+  } else {
+    document.body.classList.remove("dark-mode");
+    themeButton.textContent = "light_mode";  // Change the button text/icon to sun
+  }
+});
+
 // AUDIO
 const muteButton = document.getElementById("muteButton") as HTMLButtonElement;
-
 const winSound = new Audio("./sounds/win_sound.wav");
 const buttonSound = new Audio("./sounds/button.m4a");
-
-// Mute state
 let isMuted = false;
-
 muteButton.addEventListener("click", () => {
   isMuted = !isMuted // Toggle mute
 

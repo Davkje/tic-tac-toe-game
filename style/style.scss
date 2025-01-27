@@ -1,3 +1,5 @@
+@use 'index' as *;
+
 * {
 	margin: 0;
 	padding: 0;
@@ -200,4 +202,9 @@ button {
 	&:hover {
 		background-color: #283c36;
 	}
+}
+// -------- DARK-MODE --------
+
+.dark-mode {
+  background-color: $blackgreen;
 }
