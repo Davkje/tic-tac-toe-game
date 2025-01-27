@@ -35,13 +35,10 @@ jobs:
         with:
           node-version: 20
           cache: 'npm'
-      - name: Set up pnpm
-        run: |
-          curl -f https://get.pnpm.io/v6.16.js | node - add --global pnpm
       - name: Install dependencies
-        run: pnpm install
+        run: npm ci
       - name: Build
-        run: pnpm run build
+        run: npm run build
       - name: Setup Pages
         uses: actions/configure-pages@v4
       - name: Upload artifact
