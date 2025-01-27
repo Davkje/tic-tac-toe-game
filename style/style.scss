@@ -83,6 +83,23 @@ button {
   }
 }
 
+.theme-btn {
+  position: fixed;
+  bottom: 4%;
+  left: 4%;
+  width: 10px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: none;
+  color: #304b42;
+  &:hover {
+    background: #304b42;
+    color: #eafbee;
+  }
+}
+
 p {
 	font-size: var(--font-size-p);
 	font-weight: 500;
