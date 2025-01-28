@@ -14,6 +14,7 @@ let isDarkMode = false;
 // Add click listener for the theme button
 themeButton.addEventListener("click", () => {
   isDarkMode = !isDarkMode; // Toggle dark mode state
+  playRandomClickSound();
 
   // Update body class to switch themes
   if (isDarkMode) {
@@ -28,20 +29,60 @@ themeButton.addEventListener("click", () => {
 // AUDIO
 const muteButton = document.getElementById("muteButton") as HTMLButtonElement;
 const winSound = new Audio("./sounds/win_sound.wav");
-const buttonSound = new Audio("./sounds/button.m4a");
-let isMuted = false;
-muteButton.addEventListener("click", () => {
-  isMuted = !isMuted // Toggle mute
+const music = new Audio("./sounds/music.wav");
 
+// Create an array of audio objects
+const clickSounds = [
+  new Audio("sounds/click_1.wav"),
+  new Audio("sounds/click_2.wav"),
+  new Audio("sounds/click_3.wav"),
+  new Audio("sounds/click_4.wav"),
+  new Audio("sounds/click_5.wav"),
+];
+
+let isMuted = false;
+
+// Function to play the background music after user interaction
+function startMusic() {
+  music.loop = true; // Ensure it loops
+  playSound(music);  // Use your existing wrapper to respect mute state
+  document.removeEventListener("click", startMusic); // Remove the listener after starting
+}
+document.addEventListener("click", startMusic);
+
+function playRandomClickSound() {
+  if (!isMuted) { // Check the mute state before playing
+    const randomIndex = Math.floor(Math.random() * clickSounds.length);
+    const sound = clickSounds[randomIndex];
+    sound.currentTime = 0; // Reset to the start
+    sound.play();
+  }
+}
+
+muteButton.addEventListener("click", () => {
+  playRandomClickSound();
+  isMuted = !isMuted // Toggle mute
   // Update button text or appearance
   muteButton.textContent = isMuted ? "volume_off" : "volume_up";
+  toggleMute(isMuted);
 });
 
 // Wrapper function to play sound respecting the mute state
 function playSound(sound: HTMLAudioElement) {
 	if (!isMuted) {
+    sound.currentTime = 0;
 		sound.play();
 	}
+}
+
+function toggleMute(mute: boolean) {
+  music.muted = mute;
+  winSound.muted = mute;
+
+  // Iterate through each sound in clickSounds and set their muted property
+  clickSounds.forEach((sound) => {
+    sound.muted = mute;
+  });
 }
 
 // Add click listeners to all boxes
@@ -61,7 +102,7 @@ function handleClick(event: Event) {
 	// Update the board and UI
 	board[index] = currentPlayer;
 	target.innerHTML = getPlayerIcon(currentPlayer);
-  playSound(buttonSound);
+  playRandomClickSound();
 	// Add the "checked" class
 	target.classList.add("checked");
 
@@ -89,7 +130,7 @@ function handleClick(event: Event) {
 function resetGame() {
 	// Clear the board array
 	board.fill(null);
-  playSound(buttonSound);
+  playRandomClickSound();
 
 	// Reset the UI for all boxes
 	boxes.forEach((box) => {
@@ -172,3 +213,4 @@ function updateGameStatus(status: "Current Player" | "Winner" | "Draw") {
 // Initialize the message
 updateGameStatus("Current Player");
 updateMessage("X");
+
