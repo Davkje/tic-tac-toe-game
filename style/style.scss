@@ -1,71 +1,70 @@
 @use 'index' as *;
 
 * {
-	margin: 0;
-	padding: 0;
-	cursor: default;
+  margin: 0;
+  padding: 0;
+  cursor: default;
 }
 
 :root {
-	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-	line-height: 1.5;
-	font-weight: 800;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 800;
 
-	color: #425f56;
-	background-color: #bedac4;
+  color: $maingreen;
+  background-color: $lightgreen;
 
-	font-synthesis: none;
-	text-rendering: optimizeLegibility;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 
-	// Define responsive font sizes using clamp
-	--font-size-h1: clamp(2.8rem, 5vw, 3.2rem);
-	--font-size-p: clamp(1.2rem, 3vw, 1.7rem);
+  // Define responsive font sizes using clamp
+  --font-size-h1: clamp(2.8rem, 5vw, 3.2rem);
+  --font-size-p: clamp(1.2rem, 3vw, 1.7rem);
 
-	// Box dimensions
-	--box-size: clamp(80px, 15vw, 120px);
+  // Box dimensions
+  --box-size: clamp(80px, 15vw, 120px);
 }
 
 body {
-	margin: 0;
-	min-width: 100vw;
-	min-height: 100vh;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
+  margin: 0;
+  min-width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 h1 {
-	color: #425f56;
-	font-size: var(--font-size-h1);
-	line-height: 1.1;
-	text-align: center;
-	margin-bottom: .4rem;
-	text-transform: uppercase;
+  font-size: var(--font-size-h1);
+  line-height: 1.1;
+  text-align: center;
+  margin-bottom: .4rem;
+  text-transform: uppercase;
 }
 
 
 button {
-	transition: opacity .4s ease, visibility .4s ease;
-	position: absolute;
-	bottom: 4%;
-	padding: 10px 20px;
-	font-size: clamp(1rem, 3vw, 1.2rem);
-	font-weight: 800;
-	cursor: pointer;
-	background-color: #304b42;
-	color: #eafbee;
-	border: none;
-	border-radius: 5px;
-	opacity: 1;
-	visibility: visible;
+  transition: opacity .4s ease, visibility .4s ease;
+  position: absolute;
+  bottom: 4%;
+  padding: 10px 20px;
+  font-size: clamp(1rem, 3vw, 1.2rem);
+  font-weight: 800;
+  cursor: pointer;
+  background-color: $darkgreen;
+  color: $whitegreen;
+  border: none;
+  border-radius: 5px;
+  opacity: 1;
+  visibility: visible;
   height: 40px;
 
-	&:hover {
-		background-color: #283c36;
-	}
+  &:hover {
+    background-color: $blackgreen;
+  }
 }
 
 .mute-btn {
@@ -78,10 +77,11 @@ button {
   justify-content: center;
   align-items: center;
   background: none;
-  color: #304b42;
+  color: $darkgreen;
+
   &:hover {
-    background: #304b42;
-    color: #eafbee;
+    background: $darkgreen;
+    color: $whitegreen;
   }
 }
 
@@ -95,116 +95,155 @@ button {
   justify-content: center;
   align-items: center;
   background: none;
-  color: #304b42;
+  color: $darkgreen;
+
   &:hover {
-    background: #304b42;
-    color: #eafbee;
+    background: $darkgreen;
+    color: $whitegreen;
   }
 }
 
 p {
-	font-size: var(--font-size-p);
-	font-weight: 500;
-	font-style: italic;
+  font-size: var(--font-size-p);
+  font-weight: 500;
+  font-style: italic;
 }
 
 .game-section {
-	width: 100vw;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	margin: 1.2rem;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1.2rem;
 
-	.game-area {
-		display: grid;
-		grid-template-columns: repeat(3, 1fr);
-		gap: 12px;
-	}
+  .game-area {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
 }
 
 .box {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	border: solid 6px #425f56;
-	border-radius: 10px;
-	width: var(--box-size);
-	height: var(--box-size);
-	transition: border-color 0.4s ease-in-out, background-color 0.4s ease-in-out;
-	font-size: clamp(5rem, 10vw, 6rem);
-	font-weight: 300;
-	text-transform: lowercase;
-	text-align: center;
-	cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: solid 6px $maingreen;
+  border-radius: 10px;
+  width: var(--box-size);
+  height: var(--box-size);
+  transition: border-color 0.4s ease-in-out, background-color 0.4s ease-in-out;
+  font-size: clamp(5rem, 10vw, 6rem);
+  font-weight: 300;
+  text-transform: lowercase;
+  text-align: center;
+  cursor: pointer;
 
-	&.checked {
-		border-color: #243a33;
-	}
-	&.winner {
-		background-color: rgb(248, 255, 249);
-		transition: background-color 0.4s ease;
-	}
+  &.checked {
+    border-color: $blackgreen;
+  }
 
-	&:hover {
-		border-color: #243a33;
-	}
+  &.winner {
+    background-color: $whitegreen;
+    transition: background-color 0.4s ease;
+  }
 
-	.material-icons {
-		font-size: clamp(3.4rem, 7vw, 6rem);
-		transition: color 0.4s ease-in-out;
-	}
+  &:hover {
+    border-color: $blackgreen;
+  }
 
-	.x-symbol {
-		color: #ff4d4d; // Red for "X"
-	}
+  .material-icons {
+    font-size: clamp(3.4rem, 7vw, 6rem);
+    transition: color 0.4s ease-in-out;
+  }
 
-	.o-symbol {
-		color: #4d79ff; // Blue for "O"
-	}
+  .x-symbol {
+    color: $red;
+  }
+
+  .o-symbol {
+    color: $blue;
+  }
 }
 
 .game-status {
-	font-size: var(--font-size-p);
-	margin-bottom: 12px;
-	font-weight: 800;
+  font-size: var(--font-size-p);
+  margin-bottom: 12px;
+  font-weight: 800;
 }
 
 .game-message {
-	font-size: var(--font-size-p);
+  font-size: var(--font-size-p);
 
-	.material-icons {
-		font-size: clamp(2rem, 2vw, 6rem);
-	}
+  .material-icons {
+    font-size: clamp(2rem, 2vw, 6rem);
+  }
 }
 
 .hidden {
-	display: flex; // Keep the layout but hide the element
-	opacity: 0;
-	visibility: hidden;
-	transition: opacity .4s ease, visibility .4s ease;
+  display: flex; // Keep the layout but hide the element
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .4s ease, visibility .4s ease;
 }
 
 button {
-	transition: opacity .4s ease, visibility .4s ease;
-	position: absolute;
-	bottom: 4%;
-	padding: 10px 20px;
-	font-size: clamp(1rem, 3vw, 1.2rem);
-	font-weight: 800;
-	cursor: pointer;
-	background-color: #304b42;
-	color: #eafbee;
-	border: none;
-	border-radius: 5px;
-	opacity: 1;
-	visibility: visible;
+  transition: opacity .4s ease, visibility .4s ease;
+  position: absolute;
+  bottom: 4%;
+  padding: 10px 20px;
+  font-size: clamp(1rem, 3vw, 1.2rem);
+  font-weight: 800;
+  cursor: pointer;
+  background-color: $darkgreen;
+  color: $whitegreen;
+  border: none;
+  border-radius: 5px;
+  opacity: 1;
+  visibility: visible;
 
-	&:hover {
-		background-color: #283c36;
-	}
+  &:hover {
+    background-color: $blackgreen;
+  }
 }
+
 // -------- DARK-MODE --------
 
 .dark-mode {
   background-color: $blackgreen;
+  color: $whitegreen;
+
+  button {
+    background-color: $blackgreen;
+
+    &:hover {
+      background-color: $darkgreen;
+    }
+  }
+
+  .mute-btn,
+  .theme-btn {
+    background: $blackgreen;
+    color: $lightgreen;
+
+    &:hover {
+      background: $darkgreen;
+      color: $white;
+    }
+  }
+
+  .box {
+    border: solid 6px $maingreen;
+
+    &.checked {
+      border-color: $lightgreen;
+    }
+
+    &.winner {
+      background-color: $trans-black;
+    }
+
+    &:hover {
+      border-color: $lightgreen;
+    }
+  }
 }
