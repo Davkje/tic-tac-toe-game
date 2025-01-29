@@ -32,6 +32,7 @@ const volumeSlider = document.getElementById("volumeSlider") as HTMLInputElement
 const volumeLabel = document.getElementById("volumeLabel") as HTMLLabelElement;
 
 const winSound = new Audio("./sounds/win_sound.wav");
+const drawSound = new Audio("./sounds/draw_sound.wav");
 const music = new Audio("./sounds/music.wav");
 const clickSounds = [new Audio("sounds/click_1.wav"), new Audio("sounds/click_2.wav"), new Audio("sounds/click_3.wav"), new Audio("sounds/click_4.wav"), new Audio("sounds/click_5.wav")];
 
@@ -45,13 +46,13 @@ function startMusic() {
 }
 
 // INITIAL VOLUME FOR ALL SOUNDS
-const allAudioElements = [music, winSound, ...clickSounds];
+const allAudioElements = [music, winSound, drawSound, ...clickSounds];
 allAudioElements.forEach((audio) => {
 	audio.volume = parseFloat(volumeSlider.value); // Initialize to slider value
 });
 
 // Handle volume slider input
-volumeSlider.addEventListener("input", () => {
+volumeSlider.addEventListener("change", () => { 
 	const volume = parseFloat(volumeSlider.value);
 	allAudioElements.forEach((audio) => {
 		audio.volume = volume;
@@ -127,7 +128,7 @@ function handleClick(event: Event) {
 		updateGameStatus("Draw");
 		updateMessage(`${getPlayerIcon("X")} ${getPlayerIcon("O")}`);
 		showPlayAgainButton();
-		playSound(winSound);
+		playSound(drawSound);
 	} else {
 		currentPlayer = currentPlayer === "X" ? "O" : "X";
 		updateGameStatus("Current Player");
