@@ -30,7 +30,7 @@
 body {
   margin: 0;
   min-width: 100vw;
-  min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -71,13 +71,18 @@ button {
   width: 40px;
   height: 200px;
   gap: 80px;
-  flex-direction: column; /* Arrange elements vertically */
+  flex-direction: column;
+  /* Arrange elements vertically */
   justify-content: flex-end;
   align-items: center;
   color: $darkgreen;
   position: fixed;
   bottom: 4%;
   right: 4%;
+
+  &:hover #volumeLabel{
+    color: $blackgreen;
+  }
 
   #volumeLabel {
     height: 20px;
@@ -88,16 +93,22 @@ button {
     -webkit-appearance: none;
     appearance: none;
     position: relative;
-    width: 150px; /* Controls the height in vertical orientation */
-    height: 4px; /* Controls the thickness of the slider track */
+    width: 150px;
+    /* Controls the height in vertical orientation */
+    height: 4px;
+    /* Controls the thickness of the slider track */
     background: $maingreen;
     border-radius: 4px;
     outline: none;
     transition: opacity 0.3s ease, visibility 0.3s ease;
-    opacity: 0; /* Initially hidden */
-    visibility: hidden; /* Initially not visible */
-    transform: rotate(-90deg); /* Rotate to make the slider vertical */
-    transform-origin: center; /* Ensures proper alignment during rotation */
+    opacity: 0;
+    /* Initially hidden */
+    visibility: hidden;
+    /* Initially not visible */
+    transform: rotate(-90deg);
+    /* Rotate to make the slider vertical */
+    transform-origin: center;
+    /* Ensures proper alignment during rotation */
   }
 
   &:hover #volumeSlider {
@@ -107,10 +118,13 @@ button {
 
   #volumeSlider::-webkit-slider-thumb {
     -webkit-appearance: none;
-    width: 14px; /* Thumb width */
-    height: 14px; /* Thumb height */
+    width: 14px;
+    /* Thumb width */
+    height: 14px;
+    /* Thumb height */
     background: $darkgreen;
-    border-radius: 50%; /* Make the thumb circular */
+    border-radius: 50%;
+    /* Make the thumb circular */
     cursor: pointer;
     transition: background 0.3s ease, transform 0.2s ease;
 
@@ -229,7 +243,6 @@ p {
     }
   }
 
-  .mute-btn,
   .theme-btn {
     background: $blackgreen;
     color: $lightgreen;
@@ -237,6 +250,29 @@ p {
     &:hover {
       background: $darkgreen;
       color: $white;
+    }
+  }
+
+  #volumeControl {
+    
+    #volumeLabel {
+      color: $lightgreen;
+    }
+
+    &:hover #volumeLabel{
+      color: $whitegreen;
+    }
+
+    #volumeSlider {
+      background: $maingreen;
+    }
+
+    #volumeSlider::-webkit-slider-thumb {
+      background: $lightgreen;
+
+      &:hover {
+        background: $whitegreen;
+      }
     }
   }
 
